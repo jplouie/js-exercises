@@ -29,7 +29,15 @@ define(function() {
     },
 
     removeWithoutCopy : function(arr, item) {
-
+      var length = arr.length;
+      for(var i = 0; i < length; i++){
+        if(arr[i] === item){
+          arr.splice(i, 1);
+          i--;
+          length--;
+        }
+      }
+      return arr;
     },
 
     append : function(arr, item) {
@@ -53,11 +61,15 @@ define(function() {
     },
 
     concat : function(arr1, arr2) {
-
+      arr2.forEach(function(value){
+        arr1.push(value);
+      });
+      return arr1;
     },
 
     insert : function(arr, item, index) {
-
+      arr.splice(index, 0, item);
+      return arr;
     },
 
     count : function(arr, item) {
@@ -71,15 +83,37 @@ define(function() {
     },
 
     duplicates : function(arr) {
-
+      var length = arr.length;
+      var original = [];
+      var dupes = [];
+      for(var i = 0; i < length; i++){
+        var x = arr[i]
+        if(original.indexOf(x) === -1){
+          original.push(x);
+        }
+        else if(dupes.indexOf(x) === -1){
+          dupes.push(x);
+        }
+      }
+      return dupes;
     },
 
     square : function(arr) {
-
+      var newArr = [];
+      arr.forEach(function(x){
+        newArr.push(x * x);
+      });
+      return newArr;
     },
 
     findAllOccurrences : function(arr, target) {
-
+      var indexes = [];
+      arr.forEach(function(letter, index){
+        if(letter === target){
+          indexes.push(index);
+        }
+      });
+      return indexes;
     }
   };
 });

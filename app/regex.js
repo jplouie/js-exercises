@@ -52,7 +52,7 @@ define(function() {
       }
     },
     isUSD : function(str) {
-      var x = str.match(/$\$/);
+      var x = str.match(/^\$(\d){1,3}(\,(\d){3}){0,}(\.(\d){2})?$/);
       if(x){
         return true;
       }

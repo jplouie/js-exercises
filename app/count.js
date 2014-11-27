@@ -7,7 +7,7 @@ define(function () {
         while(start <= end){
           console.log(start++);
         }
-      }, 100)
+      }, 100);
     }
   };
 });

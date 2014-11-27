@@ -7,7 +7,9 @@ define([ 'jquery' ], function($) {
     },
 
     manipulateRemoteData : function(url) {
-
+      $.get(url, function(data){
+        
+      });
     }
   };
 });

@@ -7,8 +7,7 @@ define(function() {
     },
 
     speak : function(fn, obj) {
-      obj.speak = fn;
-      return obj.speak();
+      return fn.apply(obj);
     },
 
     functionFunction : function(str) {
@@ -18,23 +17,43 @@ define(function() {
     },
 
     makeClosures : function(arr, fn) {
-      
+      var closures = [];
+      arr.forEach(function(x){
+        closures.push(function(){
+          var val = x;
+          return fn(x);
+        });
+      });
+      return closures;
     },
 
     partial : function(fn, str1, str2) {
-
+      return function(expression){
+        return fn(str1, str2, expression);
+      }
     },
 
     useArguments : function() {
-
+      var args = Array.prototype.slice.call(arguments);
+      var sum = 0;
+      args.forEach(function(x){
+        sum += x;
+      });
+      return sum;
     },
 
     callIt : function(fn) {
-
+      var allArgs = Array.prototype.slice.call(arguments);
+      return fn.apply(null, allArgs);
     },
 
     partialUsingArguments : function(fn) {
-
+      var args = Array.prototype.slice.call(arguments);
+      if(args.length > 1){
+        return function(arguments){
+          
+        }
+      }
     },
 
     curryIt : function(fn) {

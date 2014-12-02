@@ -6,13 +6,24 @@ define(function() {
       var _this = this;
       var files = data.files;
       var arr = [];
+      var searchDir = function(data){
+        if(data.dir === dirName){
+          dir = data;
+          return;
+        }
+        var files = data.files;
+        files.forEach(function(file){
+          if(typeof file === 'object'){
+            return searchDir(file);
+          }
+        });
+      };
 
-      // if(dirName){
-      //   while(data.dir !== dirName){
-      //     data = files;
-      //     files = files.files;
-      //   }
-      // }
+      if(dirName){
+        var dir;
+        searchDir(data);
+        files = dir.files;
+      }
       files.forEach(function(file){
         if(typeof file !== 'object'){
           arr.push(file);
